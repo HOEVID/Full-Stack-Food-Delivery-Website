@@ -1,7 +1,7 @@
 import express from "express"
 import cors from "cors"
 import { connectDB } from "./config/db.js"
-import FoodRouter from "./routes/foodRoute.js"
+import foodRouter from "./routes/foodRoute.js"
 
 
 

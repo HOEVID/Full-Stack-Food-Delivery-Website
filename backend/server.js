@@ -17,7 +17,6 @@ app.use(cors())
 
 //db connection
 connectDB();
-
 //api endpoints
 app.use("/api/food",foodRouter)
 app.get("/",(req,res)=>{

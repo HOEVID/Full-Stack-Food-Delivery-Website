@@ -7,6 +7,7 @@ import Orders from './pages/Add/Orders/Orders'
 import Add from './pages/Add/Add'
 
 const App = () => {
+  
   return (
     <div>
       <Navbar/>

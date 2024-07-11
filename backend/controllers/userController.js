@@ -12,7 +12,10 @@ try{
    if(!user){
     res.json({success:false,message:"user does not exits"})
    }
-   
+   const isMatch = await bcrypt.compare(password,user.password);
+   if(!isMatch){
+    res.json({success:false,message:"invalid credintials"})
+   }
 }
 catch(error){}
 }

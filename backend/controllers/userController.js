@@ -6,7 +6,15 @@ import validator from "validator";
 //login user
 
 const loginUser = async (req, res) => {
-
+const{email,password}=req.body
+try{
+    const user =await userModel.findOne({email})
+   if(!user){
+    res.json({success:false,message:"user does not exits"})
+   }
+   
+}
+catch(error){}
 }
 const createToken = (id) =>{
     return jwt.sign({id},process.env.JWT_SECRET)

@@ -52,7 +52,7 @@ body{
    background-color: orange;
    top:-8px;
    right: -8px;
-
+  border-radius: 6px;
  }
 
  @media (max-width:1050px){

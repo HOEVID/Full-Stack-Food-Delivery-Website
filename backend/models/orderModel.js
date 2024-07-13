@@ -10,4 +10,5 @@ const orderSchema = new mongoose.Schema({
 })
 
 const orderModel =mongoose.models.order || mongoose.overwriteMiddlewareResult("order",orderSchema);
+
 export default orderModel;

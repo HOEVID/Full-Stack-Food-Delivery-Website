@@ -2,6 +2,7 @@
 import React, { useContext,  useState } from 'react'
 import './PlaceOrder.css' 
 import { StoreContext } from '../../context/StoreContext'
+import axios from 'axios'
 const PlaceOrder = () => {
   const {getTotalCartAmount,token,food_list,cartItems,url}=useContext(StoreContext)
   const [data,setData] =useState({
@@ -29,7 +30,19 @@ const PlaceOrder = () => {
           orderItems.push(itemInfo);
         }
       })
-      console.log(orderItems)
+      let orderData={
+        address:data,
+        items:orderItems,
+        amount:getTotalCartAmount()+25,
+      }
+      let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}})
+      if(response.data.success){
+        const {session_url} =response.data;
+        window.location.replace(session_url);
+      }
+      else{
+        alert("Error")
+      }
   }
 
   return (
@@ -48,7 +61,7 @@ const PlaceOrder = () => {
         </div>
         <div className='multi-fields'>
         <input name='zipcode' onChange={onChangeHandler} value={data.zipcode}  type="text" placeholder='Pin Code'/>
-        <input type="text" placeholder='Country'/>
+        <input name='country' onChange={onChangeHandler} value={data.country}type="text" placeholder='Country'/>
         </div>
         <input name='phone' onChange={onChangeHandler} value={data.phone}  type="text" placeholder='Phone'/>
     </div>

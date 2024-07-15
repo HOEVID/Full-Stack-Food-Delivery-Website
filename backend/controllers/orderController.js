@@ -22,7 +22,7 @@ address:req.body.address
             product_data:{
                 name:item.name
             },
-          unit_amount:item.price*100*80
+          unit_amount:item.price*100
         },
         quantity:item.quantity
     }))
@@ -51,5 +51,24 @@ catch(error){
 
 }
 }
+//perfect way to verify is using we[b hooks,,if werify true update payment true else delete entry
+const verifyOrder =async(req,res)=>{
+const{orderId,success}=req.body;
+try{
+    if(success=="true"){
+await orderModel.findByIdAndUpdate(orderId,{payment:true});
+res.json({success:true,message:"Paid"})
+    }
+    else{
+        await orderModel.findByIdAndDelete(orderId);
+        res.json({success:false,message:"Not paid"})
+    }
+}
+catch(error){
+    console.log(error);
+    res.json({successfalse,message:"Error"});
+}
+}
 
-export default placeOrder;
+
+export  {placeOrder,verifyOrder}

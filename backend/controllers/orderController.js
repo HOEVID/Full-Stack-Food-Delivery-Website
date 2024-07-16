@@ -32,7 +32,7 @@ address:req.body.address
             product_data:{
                 name:"Delivery Charges"
             },
-            unit_amount:25*80
+            unit_amount:25*90
         },
         quantity:1
     })
@@ -83,6 +83,16 @@ catch(error){
 
 }
 }
+ // Listing orders for admin panel
 
+ const listOrders = async(req,res)=>{
+    try{
+        const orders = await orderModel.find({});
+        res.json({success:true,data:orders})
+    }
+    catch(error){
+    res.json({success:false,message:"Error"})
+ }
+}
 
-export  {placeOrder,verifyOrder, userOrders}
+export  {placeOrder,verifyOrder, userOrders,listOrders}

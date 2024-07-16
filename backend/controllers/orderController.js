@@ -95,4 +95,17 @@ catch(error){
  }
 }
 
-export  {placeOrder,verifyOrder, userOrders,listOrders}
+// api for upsating order status (process,out for delivery)
+const updateStatus = async(req,res)=>{
+try{
+await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status})
+res.json({success:true,message:"Status updated"})
+}
+catch(error){
+    console.log(error);
+    res.json({success:false,message:"Error"})
+}
+}
+
+
+export  {placeOrder,verifyOrder, userOrders,listOrders,updateStatus}

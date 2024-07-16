@@ -2,9 +2,9 @@ import React, { useContext, useEffect } from 'react'
 import './Verify.css'
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useSearchParams } from 'react-router-dom';
 const Verify = () => {
-    const [searchParams,setSearchParams]=userSearchParams();
+    const [searchParams,setSearchParams]=useSearchParams();
     const success =searchParams.get("success");
     const orderId= searchParams.get("orderId");
     const {url} =useContext(StoreContext);
